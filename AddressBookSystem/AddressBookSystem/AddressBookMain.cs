@@ -112,14 +112,36 @@ namespace AddressBook
                         string zipCode = Console.ReadLine();
                         contact.ZipCode = zipCode;
                         break;
+                    default:
+                        Console.WriteLine("Enter Correct option");
+                        break;
                 }
             }
-            else
-            {
-                Console.WriteLine("Name is Not Exist");
-            }
+            Console.WriteLine("\nEdit Successfully\n");
+            Display();
         }
+        public void DeleteContact()
+        {
+            Contact delete = new Contact();
+            Console.WriteLine("To Delet Contact List Enter FirstName");
+            string FirstName = Console.ReadLine();
+            foreach (var contact in addressBook)
+            {
+
+                if (contact.FirstName.Equals(FirstName))
+                {
+                    delete = contact;
+                }
+            }
+            addressBook.Remove(delete);
+            Console.WriteLine("\nContact Deleted SuccessFully\n");
+            Display();
+        }
+
     }
+    
+    
 }
+
     
 
