@@ -39,6 +39,7 @@ namespace AddressBook
             addressBook.Add(contact1);
             addressBook.Add(contact2);
         }
+
         public void CreateContact()
         {
             Console.WriteLine("Enter Your ID: ");
@@ -123,11 +124,10 @@ namespace AddressBook
         public void DeleteContact()
         {
             Contact delete = new Contact();
-            Console.WriteLine("To Delet Contact List Enter FirstName");
+            Console.WriteLine("To Delete Contact List Enter FirstName");
             string FirstName = Console.ReadLine();
             foreach (var contact in addressBook)
             {
-
                 if (contact.FirstName.Equals(FirstName))
                 {
                     delete = contact;
@@ -136,6 +136,15 @@ namespace AddressBook
             addressBook.Remove(delete);
             Console.WriteLine("\nContact Deleted SuccessFully\n");
             Display();
+        }
+        public void AddMultipleContacts(int n)
+        {
+
+            while (n > 0)
+            {
+                CreateContact();
+                n--;
+            }
         }
 
     }
