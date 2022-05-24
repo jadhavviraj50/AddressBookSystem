@@ -15,24 +15,41 @@ namespace AddressBook
 
         public void CreateContact()
         {
-            Console.WriteLine("Enter Your ID: ");
-            contact.ID = Console.ReadLine();
-            Console.WriteLine("Enter Your First: ");
+            Contact contact = new Contact();
+
+            int Flag = 0;
+            Console.WriteLine("Enter the First name :");
             contact.FirstName = Console.ReadLine();
-            Console.WriteLine("Enter Your Last Name: ");
-            contact.LastName = Console.ReadLine();
-            Console.WriteLine("Enter Your Address: ");
-            contact.Address = Console.ReadLine();
-            Console.WriteLine("Enter Your Email Id: ");
-            contact.Email = Console.ReadLine();
-            Console.WriteLine("Enter Your PhoneNumber: ");
-            contact.PhoneNumber = Console.ReadLine();
-            Console.WriteLine("Enter Your City: ");
-            contact.City = Console.ReadLine();
-            Console.WriteLine("Enter Your State: ");
-            contact.State = Console.ReadLine();
-            Console.WriteLine("Enter Your Zip Code: ");
-            contact.ZipCode = Console.ReadLine();
+            string FirstNameToBeAdded = contact.FirstName;
+            foreach (var data in addressBook)
+            {
+                if (addressBook.Exists(data => data.FirstName == FirstNameToBeAdded))
+                {
+                    Flag++;
+                    Console.WriteLine("This FirstName already Exist! Can't take the Duplicate Record.");
+                    break;
+                }
+            }
+            if (Flag == 0)
+            {
+                Console.WriteLine("Enter Your ID: ");
+                contact.ID = Console.ReadLine();
+                Console.WriteLine("Enter Your Last Name: ");
+                contact.LastName = Console.ReadLine();
+                Console.WriteLine("Enter Your Address: ");
+                contact.Address = Console.ReadLine();
+                Console.WriteLine("Enter Your Email Id: ");
+                contact.Email = Console.ReadLine();
+                Console.WriteLine("Enter Your PhoneNumber: ");
+                contact.PhoneNumber = Console.ReadLine();
+                Console.WriteLine("Enter Your City: ");
+                contact.City = Console.ReadLine();
+                Console.WriteLine("Enter Your State: ");
+                contact.State = Console.ReadLine();
+                Console.WriteLine("Enter Your Zip Code: ");
+                contact.ZipCode = Console.ReadLine();
+                
+            }
             addressBook.Add(contact);
         }
         public void Display()
@@ -158,14 +175,17 @@ namespace AddressBook
                 {
                     foreach (var contact in Contact.Value)
                     {
+                        Console.WriteLine("Enter ID : " + contact.ID);
                         Console.WriteLine("Enter First Name: " + contact.FirstName);
                         Console.WriteLine("Enter Last Name: " + contact.LastName);
                         Console.WriteLine("Enter Address: " + contact.Address);
+                        Console.WriteLine("Enter Email: " + contact.Email);
+                        Console.WriteLine("Enter Phone Number: " + contact.PhoneNumber);
                         Console.WriteLine("Enter City: " + contact.City);
                         Console.WriteLine("Enter State: " + contact.State);
                         Console.WriteLine("Enter Zip: " + contact.ZipCode);
-                        Console.WriteLine("Enter Phone Number: " + contact.PhoneNumber);
-                        Console.WriteLine("Enter Email: " + contact.Email);
+                        
+                        
                         return;
                     }
                 }
