@@ -9,36 +9,9 @@ namespace AddressBook
     public class AddressBookMain
     {
         List<Contact> addressBook = new List<Contact>();
+        public Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         Contact contact = new Contact();
-        public AddressBookMain()
-        {
-            Contact contact1 = new Contact()
-            {
-                ID = "1",
-                FirstName = "Viraj",
-                LastName = "Jadhav",
-                Address = "Panvel",
-                Email = "jadhavviraj50@gmail.com",
-                PhoneNumber = "9527326437",
-                City = "Panvel",
-                State = "Maharastra",
-                ZipCode = "410206"
-            };
-            Contact contact2 = new Contact()
-            {
-                ID = "2",
-                FirstName = "Nitesh",
-                LastName = "Gaikwad",
-                Address = "Alibag",
-                Email = "gaikwadnitesh@gmail.com",
-                PhoneNumber = "8087324805",
-                City = "Alibag",
-                State = "Maharastra",
-                ZipCode = "402201"
-            };
-            addressBook.Add(contact1);
-            addressBook.Add(contact2);
-        }
+      
 
         public void CreateContact()
         {
@@ -144,6 +117,62 @@ namespace AddressBook
             {
                 CreateContact();
                 n--;
+            }
+        }
+
+        public void AddUniqueName()
+        {
+            Console.WriteLine("Enter the Firstname to Add Unique Name");
+            string name = Console.ReadLine();
+            foreach (var data in addressBook)
+            {
+                if (addressBook.Contains(data))
+                {
+                    if (data.FirstName == name)
+                    {
+                        Console.WriteLine("Please Enter an Unique Name");
+                        string uniquename = Console.ReadLine();
+                        if (dict.ContainsKey(uniquename))
+                        {
+                            Console.WriteLine("This unique name already exists");
+                        }
+                        dict.Add(uniquename, addressBook);
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine("This Contact doesn't Exist");
+            return;
+
+        }
+
+
+        public void DisplayUniqueName()
+        {
+            Console.WriteLine("Enter the Uniquename of your contacts");
+            string name = Console.ReadLine();
+
+            foreach (var Contact in dict)
+            {
+                if (Contact.Key.Contains(name))
+                {
+                    foreach (var contact in Contact.Value)
+                    {
+                        Console.WriteLine("Enter First Name: " + contact.FirstName);
+                        Console.WriteLine("Enter Last Name: " + contact.LastName);
+                        Console.WriteLine("Enter Address: " + contact.Address);
+                        Console.WriteLine("Enter City: " + contact.City);
+                        Console.WriteLine("Enter State: " + contact.State);
+                        Console.WriteLine("Enter Zip: " + contact.ZipCode);
+                        Console.WriteLine("Enter Phone Number: " + contact.PhoneNumber);
+                        Console.WriteLine("Enter Email: " + contact.Email);
+                        return;
+                    }
+                }
+
+
+
+
             }
         }
 
