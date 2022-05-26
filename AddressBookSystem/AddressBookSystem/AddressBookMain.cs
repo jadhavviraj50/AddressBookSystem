@@ -184,12 +184,9 @@ namespace AddressBook
                         Console.WriteLine("Enter City: " + contact.City);
                         Console.WriteLine("Enter State: " + contact.State);
                         Console.WriteLine("Enter Zip: " + contact.ZipCode);
-
-
                         return;
                     }
                 }
-
             }
         }
 
@@ -216,6 +213,24 @@ namespace AddressBook
                     }
                 }
             }
+        }
+
+        public void CountByCityState()
+        {
+            Console.WriteLine("Please enter the name of City or State:");
+            string NameOfCityOrState = Console.ReadLine();
+
+            int count = 0;
+            foreach (var data in addressBook)
+            {
+                string actualcity = data.City;
+                string actualState = data.State;
+                if (addressBook.Exists(data => (actualcity == NameOfCityOrState || actualState == NameOfCityOrState)))
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine("There are {0} Persons in {1}:", count, NameOfCityOrState);
         }
     }
 }
