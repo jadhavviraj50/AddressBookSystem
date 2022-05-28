@@ -10,6 +10,8 @@ namespace AddressBook
     {
         List<Contact> addressBook = new List<Contact>();
         public Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        public static Dictionary<string, List<Contact>> dictcity = new Dictionary<string, List<Contact>>();
+        public static Dictionary<string, List<Contact>> dictstate = new Dictionary<string, List<Contact>>();
         Contact contact = new Contact();
 
 
@@ -215,6 +217,7 @@ namespace AddressBook
             }
         }
 
+      
         public void CountByCityState()
         {
             Console.WriteLine("Please enter the name of City or State:");
@@ -231,6 +234,99 @@ namespace AddressBook
                 }
             }
             Console.WriteLine("There are {0} Persons in {1}:", count, NameOfCityOrState);
+        }
+
+        public void ContactByCityInDictionary()
+        {
+
+            try
+            {
+                var data = addressBook.GroupBy(x => x.City);
+                foreach (var cities in data)
+                {
+                    List<Contact> cityList = new List<Contact>();
+                    foreach (var city in cities)
+                    {
+                        cityList.Add(city);
+                    }
+                    dictcity.Add(cities.Key, cityList);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void DictionaryCity_Display()
+        {
+            if (dictcity.Count == 0)
+                Console.WriteLine("No AddressBook(s) to Show.");
+            if (dictcity.Count >= 1)
+            {
+                foreach (KeyValuePair<string, List<Contact>> addressBooks in dictcity)
+                {
+                    Console.WriteLine("Contacts From City: " + addressBooks.Key);
+                    foreach (Contact contact in addressBooks.Value)
+                    {
+                        Console.WriteLine("Name of person : " + contact.FirstName + " " + contact.LastName);
+                        Console.WriteLine("Address of person is : " + contact.Address);
+                        Console.WriteLine("City : " + contact.City);
+                        Console.WriteLine("State :" + contact.State);
+                        Console.WriteLine("ZipCode :" + contact.ZipCode);
+                        Console.WriteLine("Phone Number of person: " + contact.PhoneNumber);
+                        Console.WriteLine("Email of person : " + contact.Email);
+                        Console.WriteLine();
+
+                    }
+                }
+            }
+        }
+
+        public void ContactByStateInDictionary()
+        {
+
+            try
+            {
+                var data = addressBook.GroupBy(x => x.State);
+                foreach (var states in data)
+                {
+                    List<Contact> stateList = new List<Contact>();
+                    foreach (var state in states)
+                    {
+                        stateList.Add(state);
+                    }
+                    dictstate.Add(states.Key, stateList);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void DictionaryState_Display()
+        {
+            if (dictstate.Count == 0)
+                Console.WriteLine("No AddressBook(s) to Show.");
+            if (dictstate.Count >= 1)
+            {
+                foreach (KeyValuePair<string, List<Contact>> addressBooks in dictstate)
+                {
+                    Console.WriteLine("Contacts From State: " + addressBooks.Key);
+                    foreach (Contact contact in addressBooks.Value)
+                    {
+                        Console.WriteLine("Name of person : " + contact.FirstName + " " + contact.LastName);
+                        Console.WriteLine("Address of person is : " + contact.Address);
+                        Console.WriteLine("City : " + contact.City);
+                        Console.WriteLine("State :" + contact.State);
+                        Console.WriteLine("ZipCode :" + contact.ZipCode);
+                        Console.WriteLine("Phone Number of person: " + contact.PhoneNumber);
+                        Console.WriteLine("Email of person : " + contact.Email);
+                        Console.WriteLine();
+                    }
+                }
+            }
         }
     }
 }
