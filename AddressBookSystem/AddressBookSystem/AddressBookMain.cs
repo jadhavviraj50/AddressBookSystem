@@ -328,6 +328,25 @@ namespace AddressBook
                 }
             }
         }
+
+        public void SortingContactsByName()
+        {
+            foreach (var data in addressBook.OrderBy(s => s.FirstName).ToList())
+            {
+                if (addressBook.Contains(data))
+                {
+                    Console.WriteLine("Name of the Person : " + data.FirstName + " " + data.LastName);
+                    Console.WriteLine("Email ID : " + data.Email);
+                    Console.WriteLine("Mobile Number : " + data.PhoneNumber);
+                    Console.WriteLine("Address : " + data.Address);
+                    Console.WriteLine("City : " + data.City);
+                    Console.WriteLine("State : " + data.State);
+                    Console.WriteLine("ZipCode : " + data.ZipCode);
+                    Console.WriteLine("\n");
+                }
+
+            }
+        }
     }
 }
 
