@@ -347,6 +347,66 @@ namespace AddressBook
 
             }
         }
+
+        public void SortingContactsByCity()
+        {
+
+            foreach (var data in addressBook.OrderBy(s => s.City).ToList())
+            {
+                if (addressBook.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.FirstName + " " + data.LastName);
+                    Console.WriteLine("Address of person is : " + data.Address);
+                    Console.WriteLine("City : " + data.City);
+                    Console.WriteLine("State :" + data.State);
+                    Console.WriteLine("ZipCode :" + data.ZipCode);
+                    Console.WriteLine("Phone Number of person: " + data.PhoneNumber);
+                    Console.WriteLine("Email of person : " + data.Email);
+                    Console.WriteLine();
+                }
+
+            }
+        }
+
+        public void SortingContactsByState()
+        {
+
+            foreach (var data in addressBook.OrderBy(s => s.State).ToList())
+            {
+                if (addressBook.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.FirstName + " " + data.LastName);
+                    Console.WriteLine("Address of person is : " + data.Address);
+                    Console.WriteLine("City : " + data.City);
+                    Console.WriteLine("State :" + data.State);
+                    Console.WriteLine("ZipCode :" + data.ZipCode);
+                    Console.WriteLine("Phone Number of person: " + data.PhoneNumber);
+                    Console.WriteLine("Email of person : " + data.Email);
+                    Console.WriteLine();
+                }
+
+            }
+        }
+
+        public void SortingContactsByZip()
+        {
+
+            foreach (var data in addressBook.OrderBy(s => s.ZipCode).ToList())
+            {
+                if (addressBook.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.FirstName + " " + data.LastName);
+                    Console.WriteLine("Address of person is : " + data.Address);
+                    Console.WriteLine("City : " + data.City);
+                    Console.WriteLine("State :" + data.State);
+                    Console.WriteLine("ZipCode :" + data.ZipCode);
+                    Console.WriteLine("Phone Number of person: " + data.PhoneNumber);
+                    Console.WriteLine("Email of person : " + data.Email);
+                    Console.WriteLine();
+                }
+
+            }
+        }
     }
 }
 
