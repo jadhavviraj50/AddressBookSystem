@@ -9,7 +9,7 @@ namespace AddressBook
         {
             Console.WriteLine("------WelCome To Address Book Program------");
             bool end = true;
-            Console.WriteLine("SelectNumber\n1)Add Contact\n2)Display\n3)EditContact\n4)DeleteContact\n5)AddMultipleContact\n6)Adding Unique Name\n7)DisplayUniqueNamen\n8)Search Person by city or State\n9)Count Persons by city or State\n10)View Person contacts By City\n11)View Person contacts By State\n12)Sorting alphabetically by Person’s name\n13)Sorting Persons Contacts By City \n14)Sorting Persons Contacts By State \n15)Sorting Persons Contacts By Zip\n16)End Of Program");
+            Console.WriteLine("SelectNumber\n1)Add Contact\n2)Display\n3)EditContact\n4)DeleteContact\n5)AddMultipleContact\n6)Adding Unique Name\n7)DisplayUniqueNamen\n8)Search Person by city or State\n9)Count Persons by city or State\n10)View Person contacts By City\n11)View Person contacts By State\n12)Sorting alphabetically by Person’s name\n13)Sorting Persons Contacts By City \n14)Sorting Persons Contacts By State \n15)Sorting Persons Contacts By Zip\n16)Writing AddressBook Using File IO \n17)Reading AddressBook Using File IO\n18)End Of Program");
             Contact contact = new Contact();
             AddressBookMain addContact = new AddressBookMain();
             while (end)
@@ -71,6 +71,12 @@ namespace AddressBook
                         addContact.SortingContactsByZip();
                         break;
                     case 16:
+                        addContact.WriteToTextFile();
+                        break;
+                    case 17:
+                        addContact.ReadFileIO();
+                        break;
+                    case 18:
                         end = false;
                         Console.WriteLine("Program Is Ended");
                         break;

@@ -407,6 +407,33 @@ namespace AddressBook
 
             }
         }
+
+        string path = @"C:\Users\HP\AddressBookSystem\AddressBookSystem\AddressBookSystem\FileUsingInputOutput.txt";
+        public void WriteToTextFile()
+        {
+            using (TextWriter Tw = File.AppendText(path))
+            {
+                foreach (Contact item in addressBook)
+                {
+                    Tw.WriteLine("First Name:" + item.FirstName.ToString());
+                    Tw.WriteLine("Last Name:" + item.LastName.ToString());
+                    Tw.WriteLine("Address:" + item.Address.ToString());
+                    Tw.WriteLine("City:" + item.City.ToString());
+                    Tw.WriteLine("State:" + item.State.ToString());
+                    Tw.WriteLine("ZipCode1:" + item.ZipCode.ToString());
+                    Tw.WriteLine("PhoneNumber:" + item.PhoneNumber.ToString());
+                    Tw.WriteLine("EmailId:" + item.Email.ToString());
+
+                }
+            }
+        }
+        public void ReadFileIO()
+        {
+            string lines;
+
+            lines = File.ReadAllText(path);
+            Console.WriteLine("Reading All the Text\n" + lines);
+        }
     }
 }
 
