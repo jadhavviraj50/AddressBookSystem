@@ -477,6 +477,39 @@ namespace AddressBook
             sr.Close();
         }
 
+        public void WriteJson()
+        {
+            string json = @"C:\Users\HP\AddressBookSystem\AddressBookSystem\AddressBookSystem\TextFile1json";
+            foreach (Contact item in addressBook)
+            {
+                string json1 = JsonConvert.SerializeObject(addressBook);
+                File.WriteAllText(json, json1);
+
+            }
+            Console.WriteLine("copied all data");
+
+        }
+        public void ReadJsonFile()
+        {
+            string json = @"C:\Users\HP\AddressBookSystem\AddressBookSystem\AddressBookSystem\TextFile1json";
+            string jsonData = File.ReadAllText(json);
+            var jsonResult = JsonConvert.DeserializeObject<List<Contact>>(jsonData).ToList();
+            Console.WriteLine("Reading from Json file");
+            foreach (var data in jsonResult)
+            {
+
+                Console.WriteLine("Name of person : " + data.FirstName + " " + data.LastName);
+                Console.WriteLine("Address of person is : " + data.Address);
+                Console.WriteLine("City : " + data.City);
+                Console.WriteLine("State :" + data.State);
+                Console.WriteLine("ZipCode :" + data.ZipCode);
+                Console.WriteLine("Phone Number of person: " + data.PhoneNumber);
+                Console.WriteLine("Email of person : " + data.Email);
+                Console.WriteLine("\n");
+
+            }
+        }
+
 
     }
 }
