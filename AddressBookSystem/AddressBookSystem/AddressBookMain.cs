@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Text.Json;
+using CsvHelper;
+using System.Globalization;
 
 namespace AddressBook
 {
@@ -420,7 +424,7 @@ namespace AddressBook
                     Tw.WriteLine("Address:" + item.Address.ToString());
                     Tw.WriteLine("City:" + item.City.ToString());
                     Tw.WriteLine("State:" + item.State.ToString());
-                    Tw.WriteLine("ZipCode1:" + item.ZipCode.ToString());
+                    Tw.WriteLine("ZipCode:" + item.ZipCode.ToString());
                     Tw.WriteLine("PhoneNumber:" + item.PhoneNumber.ToString());
                     Tw.WriteLine("EmailId:" + item.Email.ToString());
 
@@ -434,6 +438,46 @@ namespace AddressBook
             lines = File.ReadAllText(path);
             Console.WriteLine("Reading All the Text\n" + lines);
         }
+
+
+        public void WriteFileCSV()
+        {
+            string path = @"C:\Users\HP\AddressBookSystem\AddressBookSystem\AddressBookSystem\UsingCsvFile.csv";
+            StreamWriter sw = new StreamWriter(path);
+
+            using (var csvExport = new CsvWriter(sw, CultureInfo.InvariantCulture))
+            {
+                {
+                    csvExport.WriteRecords(addressBook);
+                }
+                Console.WriteLine("Persons Contacts saved in Csv file");
+
+            }
+
+        }
+        public void ReadFileCSV()
+        {
+            string path = @"C:\Users\HP\AddressBookSystem\AddressBookSystem\AddressBookSystem\UsingCSVFile.csv";
+            StreamReader sr = new StreamReader(path);
+
+            CsvReader cr = new(sr, CultureInfo.InvariantCulture);
+            List<Contact> readResult = cr.GetRecords<Contact>().ToList();
+            Console.WriteLine("Reading from CSV file");
+            foreach (var item in readResult)
+            {
+                Console.WriteLine(item.FirstName.ToString());
+                Console.WriteLine(item.LastName.ToString());
+                Console.WriteLine(item.Address.ToString());
+                Console.WriteLine(item.City.ToString());
+                Console.WriteLine(item.State.ToString());
+                Console.WriteLine(item.ZipCode.ToString());
+                Console.WriteLine(item.PhoneNumber.ToString());
+                Console.WriteLine(item.Email.ToString());
+            }
+            sr.Close();
+        }
+
+
     }
 }
 
